@@ -1,0 +1,38 @@
+sim_params:
+  cleaned_halos: true
+  output_dir: /pscratch/sd/s/siyizhao/tmp/
+  sim_dir: /global/cfs/projectdirs/desi/cosmosim/Abacus/
+  sim_name: Abacus_pngbase_c300_ph000
+  subsample_dir: /pscratch/sd/s/siyizhao/AbacusSummit/subsample_desidr2_profile_withAB/
+  z_mock: 2.5
+  force_mt: true
+HOD_params:
+  tracer_flags:
+    ELG: false
+    LRG: false
+    QSO: true
+  use_particles: false
+  use_profiles: true
+  want_AB: true
+  want_rsd: true
+  want_dv: true
+  write_to_disk: false
+  QSO_params:
+    logM_cut: 12.03
+    logM1: 13.11
+    sigma: 0.08
+    alpha: 1.03
+    kappa: 0.39
+    alpha_c: 0.92
+    alpha_s: 2.7
+    ic: 1.0
+    profile_code: 1
+  dv_draw_Q: /global/homes/s/siyizhao/projects/fihobi/data/dv_draws/QSO_z2.3-2.8_CDF.npz
+clustering_params:
+  bin_params:
+    logmax: 1.5
+    logmin: -1.0
+    nbins: 15
+  clustering_type: all
+  pi_bin_size: 40
+  pimax: 40

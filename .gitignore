@@ -1,0 +1,5 @@
+**/__pycache__/*
+# link to the scratch space for learnCosm projects
+data_learnCosm 
+# individual project ignores
+ClustatKit/*
