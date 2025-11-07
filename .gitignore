@@ -1,4 +1,5 @@
 **/__pycache__/*
+**/logs/*
 # link to the scratch space for learnCosm projects
 data_learnCosm 
 # individual project ignores

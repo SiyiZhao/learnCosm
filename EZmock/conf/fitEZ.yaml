@@ -1,0 +1,16 @@
+
+clustering:
+  pk:
+    kmin: 0.004
+    kmax: 0.3
+    nbin: 64
+  xi:
+    smin: 5.0
+    smax: 60.0
+    nbin: 64
+  bk:
+    k1: 0.05
+    dk1: 0.02
+    k2: 0.1
+    dk2: 0.02
+    nbin: 64
