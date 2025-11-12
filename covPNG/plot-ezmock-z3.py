@@ -33,6 +33,12 @@ data2ez = np.loadtxt(path2ez)
 x_ez, y_ez, z_ez = data2ez[:,0], data2ez[:,1], data2ez[:,2]
 poles_ez = run_pypower_redshift(x_ez, y_ez, z_ez, Lbox=1000, Nmesh=256, edges=edges, ells=ells, mpicomm=mpicomm, mpiroot=mpiroot)
 
+path2ez2='out/EZmock_L1000_N256_fnl1200_c0_e3_b0.48_v400.dat'
+data2ez2 = np.loadtxt(path2ez2)
+x_ez2, y_ez2, z_ez2 = data2ez2[:,0], data2ez2[:,1], data2ez2[:,2]
+poles_ez2 = run_pypower_redshift(x_ez2, y_ez2, z_ez2, Lbox=1000, Nmesh=256, edges=edges, ells=ells, mpicomm=mpicomm, mpiroot=mpiroot)
+
+
 # %%
 sim='Abacus_pngbase_c302_ph000'
 redshift = 3.0
@@ -48,6 +54,7 @@ from matplotlib import pyplot as plt
 
 # %%
 plt.plot(*poles_ez(ell=0, return_k=True, complex=False), label='EZmock (fnl=1500)')
+plt.plot(*poles_ez2(ell=0, return_k=True, complex=False), label='EZmock (fnl=1200)')
 plt.plot(*poles_ab(ell=0, return_k=True, complex=False), label='AbacusHOD (fnl=100)')
 plt.xscale('log')
 plt.yscale('log')
