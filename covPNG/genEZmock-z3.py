@@ -7,7 +7,7 @@ from EZmock import EZmock
 # ## Read Reference Mock
 
 # %%
-fnl =1200
+fnl =500
 redshift = 3.0
 
 # %%
@@ -46,7 +46,7 @@ def setup_ez(Lbox=1000, Ngrid=256, seed=42):
 ## to speed up the process during calibration, you can use smaller box and lower grid resolution first, and then go back to the right setting for final check
 Lbox = 1000
 Ngrid = 256
-seed = '42_z3L1000N256fnl1200'  # seed can be a string
+seed = '42_z3L1000N256fnl500'  # seed can be a string
 ntracer = num//8
 
 ez = setup_ez(Lbox=Lbox, Ngrid=Ngrid, seed=seed)
@@ -85,7 +85,8 @@ def run_and_plot_EZmock(ez, pyc, params):
 
 # %%
 params = [
-  [0, 3, 0.48, 400],
+#   [0, 3, 0.48, 400],
+    [1.2, 8, 0.35, 480],
 ]
 
 pyc = None
