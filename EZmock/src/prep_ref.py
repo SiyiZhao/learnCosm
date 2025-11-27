@@ -16,9 +16,15 @@ def load_config(path='conf/fitEZ.yaml'):
     return config
 
 
-def read_Abacus_mock(sim = 'AbacusSummit_base_c000_ph000', z = 2.000, hod = '_dv'):
-    MOCK_IN = f"/pscratch/sd/s/siyizhao/desi-dr2-hod/mocks/{sim}/z{z:.3f}/galaxies_rsd{hod}/QSOs.dat"
-    data = np.loadtxt(MOCK_IN, skiprows=15)
+def read_Abacus_mock(dir = 'mocks', sim = 'AbacusSummit_base_c000_ph000', z = 2.000, hod = '_dv', tracer = 'QSO'):
+    MOCK_IN = f"/pscratch/sd/s/siyizhao/desi-dr2-hod/{dir}/{sim}/z{z:.3f}/galaxies_rsd{hod}/{tracer}s.dat"
+    print(f"Loading mock from {MOCK_IN}")
+    with open(MOCK_IN, 'r') as f:
+        it = iter(f)
+        for line in it:
+            if not line.lstrip().startswith('#'):
+                break
+        data = np.loadtxt(it)
     x = data[:,0]
     y = data[:,1]
     z_rsd = data[:,2]
