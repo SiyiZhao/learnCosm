@@ -4,3 +4,11 @@
 data_learnCosm 
 # individual project ignores
 ClustatKit/*
+# LaTeX intermediate files
+*.aux
+*.bbl
+*.blg
+*.synctex.gz
+*.toc
+*.log
+*.out

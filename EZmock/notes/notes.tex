@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage[width=170mm, margin=1in]{geometry} 
+\input{macros.tex}
+
+\title{EZmock}
+\siyizhao
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+
+\cite{zhao2021ezmock}
+
+\section{Matter Field}
+
+Zel'dovich approximation, the linear solution of the LPT.
+
+The displacement field in ZA is given by
+\begin{equation}
+    \vec{\Psi}_{\mathrm{ZA}}(\vec{q}, a)=D_1(a) \int \frac{{\dd}^3 k}{{(2 \pi)}^3} \mathrm{e}^{\ii \vec{k} \cdot \vec{q}} \frac{\ii \vec{k}}{k^2} \hat{\delta}(\vec{k}),
+\end{equation}
+where $\hat{\delta}(\vec{k})$ is the density contrast in Fourier space at the initial time, and the linear growth factor $D_1(a)$ can be evaluated numerically through the integral representation
+\begin{equation}
+    D_1(a)=a^3 H(a) \frac{5 \Omega_{\mathrm{m}}}{2} \int_0^a \frac{\dd \tilde{a}}{\tilde{a}^3 H^3(\tilde{a})}.
+\end{equation}
+
+
+\section{Effective Bias Model}
+
+Refer to Sec.2.2 of~\cite{zhao2021ezmock}.
+
+\subsection{The Bias Function}
+
+\begin{itemize}
+    \item[1.] Critical density $\rho_{\rm c}$: To form gravitational bound systems, such as dark matter halos, \core{a minimum local denisty} is required to overcome the background expansion. The first free parameter is \core{a density threshold} $\rho_{\rm c}$, the bias model contains a term of step function $\Theta(\rho_{\mathrm{m}}-\rho_{\mathrm{c}})$ to set a density threshold, in ohter words, only grid cells with density equal or higher than $\rho_{\rm c}$ are allowed to populate tracers.
+    \item[2.] Density saturation $\rho_{\rm sat}$: [TBD] Due to the strong degeneracies, they fix $\rho_{\rm sat}=10$.
+    \item[3.] Exponential cut-off of the halo bias relation $\rho_{\rm exp}$: [TBD]
+\end{itemize}
+
+To summarize, the full bias model can be written as
+\begin{equation}
+    \rho_{\mathrm{t}}=\theta\left(\rho_{\mathrm{m}}-\rho_{\mathrm{c}}\right) \rho_{\mathrm{sat}}\left[1-\exp \left(-\rho_{\mathrm{m}} / \rho_{\mathrm{exp}}\right)\right] B_{\mathrm{s}},
+\end{equation}
+where $B_{\mathrm{s}}$ is the stochastic bias term to model the scatter in the bias relation.
+\begin{equation}
+    B_{\mathrm{s}}= \begin{cases}1+G(\lambda), & G(\lambda) \geq 0 ; \\ \exp (G(\lambda)), & G(\lambda)<0 .\end{cases}
+\end{equation}
+Here $G(\lambda)$ is a random number drawn from a Gaussian distribution with mean 0 and variance $\lambda$. 
+The exponentail function is for ensuring the positivity of bias values.
+
+The model of stochastic bias is too simple than people already known. The reason is, in EZmock, only the \core{order} of tracer densities for each cells matters.
+They fixed $\lambda=10$ since the effect from it can be achieved by the other parameters, such as $\rho_{\rm c}$ and $\rho_{\rm exp}$.
+
+\subsection{PDF Mapping Scheme}
+
+
+\bibliography{EZmock}
+
+\end{document}
