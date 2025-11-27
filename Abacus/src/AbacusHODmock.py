@@ -14,17 +14,21 @@ import numpy as np
 import sys, os
 sys.path.insert(0, os.path.expanduser('~/lib/'))
 from abacusnbody.hod.abacus_hod import AbacusHOD
+import abacusnbody.hod.abacus_hod as ah
+print(ah.__file__)
 # sys.path.insert(0, os.path.abspath('src'))
 from config_helper import config_Abacus, save_config
 
+# Example HOD parameters for QSO at z~2.5
+logM_cut, logM1, sigma, alpha, kappa, alpha_c, alpha_s = [11.7209282, 11.1767657, 0.04491125, 0.90375827, 3.85540798, 1.81135532, 1.90593657]
 CONFIG = {
     'sim_params':{
         'cleaned_halos': True,
-        'output_dir': '/pscratch/sd/s/siyizhao/data_learnCosm/AbacusMocks/QSOz3-fnl100bf/',
+        'output_dir': '/pscratch/sd/s/siyizhao/data_learnCosm/AbacusMocks/QSOz5-fnl100bf/',
         'sim_dir': '/global/cfs/projectdirs/desi/cosmosim/Abacus/',
         'sim_name': 'Abacus_pngbase_c302_ph000',
         'subsample_dir': '/pscratch/sd/s/siyizhao/AbacusSummit/subsample_desidr2_profile_withAB/',
-        'z_mock': 1.55,
+        'z_mock': 2.5,
         'force_mt': True
         },
     'HOD_params':{
@@ -33,18 +37,18 @@ CONFIG = {
         'use_profiles': True,
         'want_AB': True,
         'want_rsd': True,
-        'want_dv': False,
+        'want_dv': True,
         'write_to_disk': False,
-        'QSO_params': {'logM_cut': 12.1467902,
-        'logM1': 13.12929296,
-        'sigma': 0.22703947,
-        'alpha': 1.23981437,
-        'kappa': 0.30623195,
-        'alpha_c': 0.46184538,
-        'alpha_s': 1.62540044,
+        'QSO_params': {'logM_cut': logM_cut,      
+        'logM1': logM1,
+        'sigma': sigma,
+        'alpha': alpha,
+        'kappa': kappa,
+        'alpha_c': alpha_c,
+        'alpha_s': alpha_s,
         'ic': 1.0,
         'profile_code': 1},
-        'dv_draw_Q': '/global/homes/s/siyizhao/projects/fihobi/data/dv_draws/QSO_z1.4-1.7_CDF.npz'
+        'dv_draw_Q': '/global/homes/s/siyizhao/projects/fihobi/data/dv_draws/QSO_z2.3-2.8_CDF.npz'
         },
     'clustering_params':{
         'bin_params': {'logmax': 1.5, 'logmin': -1.0, 'nbins': 15},
