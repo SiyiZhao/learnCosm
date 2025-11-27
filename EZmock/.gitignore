@@ -1,3 +1,11 @@
 out
 clustering/
 conf_2lpt/params_2lpt
+
+# calibrations for certain samples, no git
+cali_EZmock_*
+
+scripts/run_disp_2lpt.sh
+scripts/prep_2lpt.py
+fitEZmock.sh
+scripts/fitEZmock.py

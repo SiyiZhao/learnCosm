@@ -12,3 +12,5 @@ ClustatKit/*
 *.toc
 *.log
 *.out
+
+*.ipynb
