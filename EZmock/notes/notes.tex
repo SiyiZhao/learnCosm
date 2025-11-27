@@ -37,12 +37,12 @@ Refer to Sec.2.2 of~\cite{zhao2021ezmock}.
 \begin{itemize}
     \item[1.] Critical density $\rho_{\rm c}$: To form gravitational bound systems, such as dark matter halos, \core{a minimum local denisty} is required to overcome the background expansion. The first free parameter is \core{a density threshold} $\rho_{\rm c}$, the bias model contains a term of step function $\Theta(\rho_{\mathrm{m}}-\rho_{\mathrm{c}})$ to set a density threshold, in ohter words, only grid cells with density equal or higher than $\rho_{\rm c}$ are allowed to populate tracers.
     \item[2.] Density saturation $\rho_{\rm sat}$: [TBD] Due to the strong degeneracies, they fix $\rho_{\rm sat}=10$.
-    \item[3.] Exponential cut-off of the halo bias relation $\rho_{\rm exp}$: [TBD]
+    \item[3.] Exponential cut-off of the halo bias relation $\rho_{\exp}$: For centain $\rho_{\rm m}$, the larger $\rho_{\exp}$, the lower $\rho_{\rm t}$. When $\rho_{\rm m}\gg \rho_{\exp}$, this effect is very small, it mainly affects the low density regions. [TBD]
 \end{itemize}
 
 To summarize, the full bias model can be written as
 \begin{equation}
-    \rho_{\mathrm{t}}=\theta\left(\rho_{\mathrm{m}}-\rho_{\mathrm{c}}\right) \rho_{\mathrm{sat}}\left[1-\exp \left(-\rho_{\mathrm{m}} / \rho_{\mathrm{exp}}\right)\right] B_{\mathrm{s}},
+    \rho_{\mathrm{t}}=\theta\left(\rho_{\mathrm{m}}-\rho_{\mathrm{c}}\right) \rho_{\mathrm{sat}}\left[1-\exp \left(-\rho_{\mathrm{m}} / \rho_{\exp}\right)\right] B_{\mathrm{s}},
 \end{equation}
 where $B_{\mathrm{s}}$ is the stochastic bias term to model the scatter in the bias relation.
 \begin{equation}
@@ -56,6 +56,38 @@ They fixed $\lambda=10$ since the effect from it can be achieved by the other pa
 
 \subsection{PDF Mapping Scheme}
 
+Model the PDF of the tracers by a power-law relation
+\begin{equation}
+    P(n_{\rm t})=Ab^{n_{\rm t}},
+\end{equation}
+where $A>0$ and $0<b<1$.
+
+The total tracer number is given by the reference cubic simulation, and it is 
+\begin{equation}
+    N_{\rm t}^{\rm tot}=\sum_{n_{\rm t}=1}^{n_{{\rm t}, \max}} n_{\rm c}(n_{\rm t}) n_{\rm t},
+\end{equation}
+where $n_{\rm c}(n_{\rm t}) = \left\lfloor N_{\text {cell }} P\left(n_{\mathrm{t}}\right)\right\rceil$ is the number of cells with tracer number $n_{\rm t}$, and $N_{\rm cell}$ is the total number of cells in the simulation box.
+
+Then EZmock assign tracers to the cells according to the bias model in previous section. 
+First it sort the cells by their tracer densities $\rho_{\rm t}$ in descending order.
+Then it assign $n_{\rm c}(n_{\rm t})$ cells with the highest $\rho_{\rm t}$ to have $n_{\rm t}$ tracers, until all tracers are assigned.
+
+\subsection{Random Motion for RSD}
+
+Add an isotropic 3D Gaussian motion to the linear coherent velocity from ZA
+\begin{equation}
+    \vec{u}_{\rm t}=\vec{u}_{\mathrm{ZA}}+\vec{G}(v),
+\end{equation}
+
+\subsection{Summary}
+
+To summarize, the effective bias model contains 4 free parameters:
+\begin{itemize}
+    \item $\rho_{\rm c}$: critical density threshold for tracer population.
+    \item $\rho_{\exp}$: exponential cut-off controlling the low-density tracer population.
+    \item $b$: parameter in the power-law PDF mapping scheme.
+    \item $v$: amplitude of the random motion added for RSD.
+\end{itemize}
 
 \bibliography{EZmock}
 
